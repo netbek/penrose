@@ -1,4 +1,4 @@
-# Penrose
+# Penrose [![Build Status](https://secure.travis-ci.org/netbek/penrose.png?branch=master)](http://travis-ci.org/netbek/penrose)
 
 Build derivative images.
 
