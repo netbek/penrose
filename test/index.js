@@ -138,6 +138,29 @@ describe('Penrose', function () {
     });
   });
 
+  describe('getURL', function () {
+    it('Should return expected URL if URI has scheme', function () {
+      var actual = penrose.getURL('public://dir/file.jpg');
+      var expected = '/' + config.schemes.public.path + 'dir/file.jpg';
+
+      assert.equal(actual, expected);
+    });
+
+    it('Should return expected URL if URI has no scheme', function () {
+      var actual = penrose.getURL('dir/file.jpg');
+      var expected = 'dir/file.jpg';
+
+      assert.equal(actual, expected);
+    });
+
+    it('Should return expected URL if URI has unsupported scheme', function () {
+      var actual = penrose.getURL('http://dir/file.jpg');
+      var expected = 'http://dir/file.jpg';
+
+      assert.equal(actual, expected);
+    });
+  });
+
   describe('getStylePath', function () {
     it('Should return expected path if URI has scheme', function () {
       var actual = penrose.getStylePath('small', 'private://dir/file.jpg');
