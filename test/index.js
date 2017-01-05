@@ -13,11 +13,11 @@ describe('Penrose', function () {
   var testDir = __dirname.substring(process.cwd().length + 1) + '/';
 
   var config = {
-    'srcBase': testDir + 'data/src/',
-    'src': [
-      testDir + 'data/src/*'
-    ],
-    'dist': testDir + 'data/dist/',
+    'schemes': {
+      'public': {
+        'path': testDir + 'data/files/'
+      }
+    },
     'styles': {
       'small': {
         'actions': [{
@@ -51,35 +51,147 @@ describe('Penrose', function () {
       });
   }
 
+  /**
+   * Deletes test output files.
+   *
+   * @return {Promise}
+   */
+  function deleteOutput() {
+    return del(_.map(config.schemes, function (scheme) {
+      return scheme.path + 'styles/';
+    }));
+  }
+
   beforeEach(function (done) {
-    // Delete test output.
-    del([config.dist])
+    deleteOutput()
       .then(function () {
         done();
       });
   });
 
   after(function (done) {
-    // Delete test output.
-    del([config.dist])
+    deleteOutput()
       .then(function () {
         done();
       });
   });
 
-  describe('getDerivativePath', function () {
-    it('Should return expected path', function () {
-      var actual = penrose.getDerivativePath('small', config.srcBase + 'The_Earth_seen_from_Apollo_17.jpg', config.srcBase);
-      var expected = config.dist + 'small/The_Earth_seen_from_Apollo_17.jpg';
+  describe('resolvePath', function () {
+    it('Should return expected path if URI has scheme', function () {
+      var actual = penrose.resolvePath('public://dir/file.jpg');
+      var expected = config.schemes.public.path + 'dir/file.jpg';
 
       assert.equal(actual, expected);
+    });
+
+    it('Should return expected path if URI has no scheme', function () {
+      var actual = penrose.resolvePath('dir/file.jpg');
+      var expected = 'dir/file.jpg';
+
+      assert.equal(actual, expected);
+    });
+
+    it('Should throw error if URI has unsupported scheme', function () {
+      var actual;
+      var expected = 'error';
+
+      try {
+        actual = penrose.resolvePath('http://dir/file.jpg');
+      }
+      catch (e) {
+        actual = e;
+      }
+
+      assert.typeOf(actual, expected);
+    });
+  });
+
+  describe('getScheme', function () {
+    it('Should return expected scheme if URI has scheme', function () {
+      var actual = penrose.getScheme('public://dir/file.jpg');
+      var expected = 'public';
+
+      assert.equal(actual, expected);
+    });
+
+    it('Should return undefined scheme if URI has no scheme', function () {
+      var actual = penrose.getScheme('dir/file.jpg');
+      var expected = undefined;
+
+      assert.equal(actual, expected);
+    });
+  });
+
+  describe('getTarget', function () {
+    it('Should return expected target if URI has scheme', function () {
+      var actual = penrose.getTarget('public://dir/file.jpg');
+      var expected = 'dir/file.jpg';
+
+      assert.equal(actual, expected);
+    });
+
+    it('Should return expected target if URI has no scheme', function () {
+      var actual = penrose.getTarget('dir/file.jpg');
+      var expected = 'dir/file.jpg';
+
+      assert.equal(actual, expected);
+    });
+  });
+
+  describe('getStylePath', function () {
+    it('Should return expected path if URI has scheme', function () {
+      var actual = penrose.getStylePath('small', 'private://dir/file.jpg');
+      var expected = 'private://styles/small/private/dir/file.jpg';
+
+      assert.equal(actual, expected);
+    });
+
+    it('Should return expected path if URI has no scheme', function () {
+      var actual = penrose.getStylePath('small', 'dir/file.jpg');
+      var expected = 'public://styles/small/public/dir/file.jpg';
+
+      assert.equal(actual, expected);
+    });
+  });
+
+  describe('getStyleURL', function () {
+    it('Should return expected URL if URI has scheme', function () {
+      var actual = penrose.getStyleURL('small', 'public://dir/file.jpg');
+      var expected = '/' + config.schemes.public.path + 'styles/small/public/dir/file.jpg';
+
+      assert.equal(actual, expected);
+    });
+
+    it('Should return expected URL if URI has no scheme', function () {
+      var actual = penrose.getStyleURL('small', 'dir/file.jpg');
+      var expected = '/' + config.schemes.public.path + 'styles/small/public/dir/file.jpg';
+
+      assert.equal(actual, expected);
+    });
+
+    it('Should throw error if URI has unsupported scheme', function () {
+      var actual;
+      var expected = 'error';
+
+      try {
+        actual = penrose.getStyleURL('small', 'http://dir/file.jpg');
+      }
+      catch (e) {
+        actual = e;
+      }
+
+      assert.typeOf(actual, expected);
     });
   });
 
   describe('createDerivative', function () {
     it('Should create derivative images', function () {
       var actual = function () {
-        return multiGlob(config.src)
+        return multiGlob(_.map(config.schemes, function (scheme) {
+            return scheme.path + '**/*';
+          }), {
+            nodir: true
+          })
           .then(function (files) {
             var tasks = [];
 
@@ -88,7 +200,7 @@ describe('Penrose', function () {
                 tasks.push({
                   style: style,
                   src: file,
-                  dist: penrose.getDerivativePath(styleName, file, config.srcBase)
+                  dist: penrose.getStylePath(styleName, file)
                 });
               });
             });
@@ -98,13 +210,17 @@ describe('Penrose', function () {
             });
           })
           .then(function () {
-            return multiGlob([config.dist + '**/*'], {
+            return multiGlob(_.map(config.schemes, function (scheme) {
+              return scheme.path + 'styles/**/*';
+            }), {
               nodir: true
             });
           });
       };
 
-      var expected = [config.dist + 'small/The_Earth_seen_from_Apollo_17.jpg'];
+      var expected = [
+        config.schemes.public.path + 'styles/small/public/' + config.schemes.public.path + 'The_Earth_seen_from_Apollo_17.jpg'
+      ];
 
       return assert.eventually.deepEqual(actual(), expected);
     });
