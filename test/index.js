@@ -57,9 +57,13 @@ describe('Penrose', function () {
    * @return {Promise}
    */
   function deleteOutput() {
-    return del(_.map(config.schemes, function (scheme) {
+    var dirs = _.map(config.schemes, function (scheme) {
       return scheme.path + 'styles/';
-    }));
+    }).concat([
+      config.schemes.public.path + 'math/'
+    ]);
+
+    return del(dirs);
   }
 
   beforeEach(function (done) {
@@ -244,6 +248,54 @@ describe('Penrose', function () {
       var expected = [
         config.schemes.public.path + 'styles/small/public/' + config.schemes.public.path + 'The_Earth_seen_from_Apollo_17.jpg'
       ];
+
+      return assert.eventually.deepEqual(actual(), expected);
+    });
+  });
+
+  describe('createMathFile', function () {
+    it('Should create math files', function () {
+      var math = [{
+        data: 'E = mc^2',
+        format: 'tex'
+      }];
+
+      var tasks = [];
+      var expected = [];
+
+      _.forEach(math, function (value) {
+        var outputFormat = 'svg';
+        var task = {
+          input: value.data,
+          inputFormat: value.format,
+          outputFormat: outputFormat
+        };
+        var filename = penrose.getMathFilename(task);
+        task.output = penrose.getMathPath(outputFormat, filename);
+
+        tasks.push(task);
+
+        expected.push(config.schemes.public.path + 'math/svg/' + filename);
+      });
+
+      var actual = function () {
+        return Promise.mapSeries(tasks, function (task) {
+            return penrose.createMathFile(task);
+          })
+          .then(function () {
+            return multiGlob(_.map(config.schemes, function (scheme) {
+              return scheme.path + 'math/**/*';
+            }), {
+              nodir: true
+            });
+          });
+
+        return multiGlob(_.map(config.schemes, function (scheme) {
+          return scheme.path + 'math/**/*';
+        }), {
+          nodir: true
+        });
+      };
 
       return assert.eventually.deepEqual(actual(), expected);
     });
