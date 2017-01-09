@@ -168,14 +168,14 @@ describe('Penrose', function () {
   describe('getStylePath', function () {
     it('Should return expected path if URI has scheme', function () {
       var actual = penrose.getStylePath('small', 'private://dir/file.jpg');
-      var expected = 'private://styles/small/private/dir/file.jpg';
+      var expected = 'private://styles/small/dir/file.jpg';
 
       assert.equal(actual, expected);
     });
 
     it('Should return expected path if URI has no scheme', function () {
       var actual = penrose.getStylePath('small', 'dir/file.jpg');
-      var expected = 'public://styles/small/public/dir/file.jpg';
+      var expected = 'public://styles/small/dir/file.jpg';
 
       assert.equal(actual, expected);
     });
@@ -184,14 +184,14 @@ describe('Penrose', function () {
   describe('getStyleURL', function () {
     it('Should return expected URL if URI has scheme', function () {
       var actual = penrose.getStyleURL('small', 'public://dir/file.jpg');
-      var expected = '/' + config.schemes.public.path + 'styles/small/public/dir/file.jpg';
+      var expected = '/' + config.schemes.public.path + 'styles/small/dir/file.jpg';
 
       assert.equal(actual, expected);
     });
 
     it('Should return expected URL if URI has no scheme', function () {
       var actual = penrose.getStyleURL('small', 'dir/file.jpg');
-      var expected = '/' + config.schemes.public.path + 'styles/small/public/dir/file.jpg';
+      var expected = '/' + config.schemes.public.path + 'styles/small/dir/file.jpg';
 
       assert.equal(actual, expected);
     });
@@ -246,7 +246,7 @@ describe('Penrose', function () {
       };
 
       var expected = [
-        config.schemes.public.path + 'styles/small/public/' + config.schemes.public.path + 'The_Earth_seen_from_Apollo_17.jpg'
+        config.schemes.public.path + 'styles/small/' + config.schemes.public.path + 'The_Earth_seen_from_Apollo_17.jpg'
       ];
 
       return assert.eventually.deepEqual(actual(), expected);
