@@ -289,12 +289,6 @@ describe('Penrose', function () {
               nodir: true
             });
           });
-
-        return multiGlob(_.map(config.schemes, function (scheme) {
-          return scheme.path + 'math/**/*';
-        }), {
-          nodir: true
-        });
       };
 
       return assert.eventually.deepEqual(actual(), expected);
