@@ -1,6 +1,25 @@
-# Penrose [![Build Status](https://secure.travis-ci.org/netbek/penrose.png?branch=master)](http://travis-ci.org/netbek/penrose)
+# Penrose [![CircleCI](https://circleci.com/gh/netbek/penrose.svg?style=svg)](https://circleci.com/gh/netbek/penrose)
 
 Build derivative images.
+
+## Installation
+
+### Ubuntu 14-16
+
+1. Install system dependencies:
+
+    ```
+    sudo apt-get install graphicsmagick pngquant
+    ```
+
+### OS X
+
+1. Install system dependencies:
+
+    ```
+    brew install graphicsmagick
+    brew install pngquant
+    ```
 
 ## Credit
 
