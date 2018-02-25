@@ -1,11 +1,22 @@
 {
   "plugins": [
-    "lodash",
-    "transform-object-assign"
+    "transform-class-properties"
   ],
   "presets": [
-    "es2015",
-    "react",
-    "stage-2"
+    [
+      "airbnb",
+      {
+        "debug": false,
+        "targets": {
+          "android": 30,
+          "chrome": 35,
+          "edge": 14,
+          "explorer": 9,
+          "firefox": 52,
+          "safari": 8,
+          "ucandroid": 1
+        }
+      }
+    ]
   ]
 }

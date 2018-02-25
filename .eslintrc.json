@@ -8,12 +8,6 @@
     "mocha": true,
     "node": true
   },
-  "globals": {
-    "$": true,
-    "jQuery": true,
-    "React": true,
-    "ReactDOM": true
-  },
   "plugins": [
     "dollar-sign",
     "jsdoc",
@@ -93,6 +87,7 @@
     }],
     "react/no-array-index-key": "error",
     "react/no-unused-prop-types": 0,
+    "react/prefer-stateless-function": 0,
     "vars-on-top": 0
   },
   "parser": "babel-eslint",
