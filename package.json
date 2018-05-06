@@ -1,6 +1,6 @@
 {
   "name": "penrose",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Build derivative images",
   "main": "lib/penrose.js",
   "repository": {
