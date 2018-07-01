@@ -1,0 +1,26 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.11.3-stretch-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install dependencies
+          command: |
+            sudo npm install -g bower grunt-cli gulp-cli
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq graphicsmagick
+            rm -fr ~/node_modules
+            yarn install
+      - save_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Run tests
+          command: |
+            yarn test
