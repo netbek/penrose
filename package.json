@@ -20,11 +20,14 @@
   "bugs": {
     "url": "https://github.com/netbek/penrose/issues"
   },
+  "resolutions": {
+    "eslint-scope": "3.7.1"
+  },
   "dependencies": {
     "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.3",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-lodash": "^3.3.2",
+    "babel-eslint": "^8.2.6",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "bluebird": "^3.5.1",
     "canonical-json": "0.0.4",
@@ -36,13 +39,13 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-dollar-sign": "^1.0.1",
-    "eslint-plugin-html": "^4.0.3",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-jsdoc": "^3.6.3",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-html": "^4.0.5",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsdoc": "^3.7.1",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-markdown": "^1.0.0-beta.6",
-    "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.10.0",
     "fs-extra": "^6.0.0",
     "glob": "^7.1.2",
     "glob-promise": "^3.4.0",
@@ -52,12 +55,12 @@
     "mathjax-node": "^0.5.2",
     "mkdirp": "^0.5.1",
     "phantomjs-prebuilt": "^2.1.16",
-    "prettier": "^1.12.1",
+    "prettier": "^1.13.7",
     "svg2png": "3.1.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
-    "mocha": "^5.0.0"
+    "mocha": "^5.2.0"
   }
 }
