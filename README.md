@@ -2,25 +2,6 @@
 
 Build derivative images.
 
-## Installation
-
-### Ubuntu 14-16
-
-1. Install system dependencies:
-
-    ```
-    sudo apt-get install graphicsmagick pngquant
-    ```
-
-### OS X
-
-1. Install system dependencies:
-
-    ```
-    brew install graphicsmagick
-    brew install pngquant
-    ```
-
 ## Credit
 
 Test image: [The Blue Marble](https://www.nasa.gov/content/blue-marble-image-of-the-earth-from-apollo-17) - NASA (public domain)
