@@ -8,7 +8,6 @@
     "url": "git://github.com/netbek/penrose"
   },
   "scripts": {
-    "postinstall": "npm rebuild phantomjs-prebuilt",
     "test": "make test"
   },
   "author": {
