@@ -1,0 +1,9 @@
+{
+  "reject": [
+    "eslint-scope",
+    "event-stream"
+  ],
+  "removeRange": true,
+  "semverLevel": "major",
+  "upgrade": true
+}
