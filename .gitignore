@@ -5,6 +5,7 @@ npm-debug.log
 nbproject
 .idea
 .netbeans.xml
+.vscode
 
 # Test output
 test/data/dist/
