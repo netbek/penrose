@@ -50,6 +50,7 @@
     "glob-promise": "3.4.0",
     "lodash": "4.17.15",
     "lodash-webpack-plugin": "0.11.5",
+    "mathjax": "2.7.5",
     "mathjax-node": "0.5.2",
     "mkdirp": "0.5.1",
     "phantomjs-prebuilt": "2.1.16",
