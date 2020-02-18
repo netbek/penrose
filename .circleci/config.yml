@@ -11,7 +11,6 @@ jobs:
             sudo npm install -g bower grunt-cli gulp-cli
             sudo apt-get update -qq
             sudo apt-get install -y -qq graphicsmagick
-            rm -fr ~/node_modules
             npm ci
       - run:
           name: Run tests
