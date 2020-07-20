@@ -1,17 +1,19 @@
-var _ = require('lodash');
-var chai = require('chai');
-var {assert} = chai;
-var chaiAsPromised = require('chai-as-promised');
+const _ = require('lodash');
+const chai = require('chai');
+const {assert} = chai;
+const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
-var del = require('del');
-var globPromise = require('glob-promise');
-var {Penrose} = require('..');
-var Promise = require('bluebird');
+const fs = require('fs-extra');
+const globPromise = require('glob-promise');
+const {Penrose} = require('..');
+const Promise = require('bluebird');
 
-describe('Penrose', function() {
-  var testDir = __dirname.substring(process.cwd().length + 1) + '/';
+Promise.promisifyAll(fs);
 
-  var config = {
+describe('Penrose', function () {
+  const testDir = __dirname.substring(process.cwd().length + 1) + '/';
+
+  const config = {
     schemes: {
       public: {
         path: testDir + 'data/files/'
@@ -30,7 +32,7 @@ describe('Penrose', function() {
     }
   };
 
-  var penrose = new Penrose(config);
+  const penrose = new Penrose(config);
 
   /**
    *
@@ -39,13 +41,13 @@ describe('Penrose', function() {
    * @returns {Promise}
    */
   function multiGlob(patterns, options) {
-    var matches = [];
+    let matches = [];
 
-    return Promise.mapSeries(patterns, function(pattern) {
-      return globPromise(pattern, options).then(function(files) {
+    return Promise.mapSeries(patterns, function (pattern) {
+      return globPromise(pattern, options).then(function (files) {
         matches = matches.concat(files);
       });
-    }).then(function() {
+    }).then(function () {
       return Promise.resolve(matches);
     });
   }
@@ -56,43 +58,43 @@ describe('Penrose', function() {
    * @returns {Promise}
    */
   function deleteOutput() {
-    var dirs = _.map(config.schemes, function(scheme) {
+    const dirs = _.map(config.schemes, function (scheme) {
       return scheme.path + 'styles/';
     }).concat([config.schemes.public.path + 'math/']);
 
-    return del(dirs);
+    return Promise.mapSeries(dirs, (dir) => fs.removeAsync(dir));
   }
 
-  beforeEach(function(done) {
-    deleteOutput().then(function() {
+  beforeEach(function (done) {
+    deleteOutput().then(function () {
       done();
     });
   });
 
-  after(function(done) {
-    deleteOutput().then(function() {
+  after(function (done) {
+    deleteOutput().then(function () {
       done();
     });
   });
 
-  describe('resolvePath', function() {
-    it('Should return expected path if URI has scheme', function() {
-      var actual = penrose.resolvePath('public://dir/file.jpg');
-      var expected = config.schemes.public.path + 'dir/file.jpg';
+  describe('resolvePath', function () {
+    it('Should return expected path if URI has scheme', function () {
+      const actual = penrose.resolvePath('public://dir/file.jpg');
+      const expected = config.schemes.public.path + 'dir/file.jpg';
 
       assert.equal(actual, expected);
     });
 
-    it('Should return expected path if URI has no scheme', function() {
-      var actual = penrose.resolvePath('dir/file.jpg');
-      var expected = 'dir/file.jpg';
+    it('Should return expected path if URI has no scheme', function () {
+      const actual = penrose.resolvePath('dir/file.jpg');
+      const expected = 'dir/file.jpg';
 
       assert.equal(actual, expected);
     });
 
-    it('Should throw error if URI has unsupported scheme', function() {
-      var actual;
-      var expected = 'error';
+    it('Should throw error if URI has unsupported scheme', function () {
+      let actual;
+      const expected = 'error';
 
       try {
         actual = penrose.resolvePath('http://dir/file.jpg');
@@ -104,97 +106,97 @@ describe('Penrose', function() {
     });
   });
 
-  describe('getScheme', function() {
-    it('Should return expected scheme if URI has scheme', function() {
-      var actual = penrose.getScheme('public://dir/file.jpg');
-      var expected = 'public';
+  describe('getScheme', function () {
+    it('Should return expected scheme if URI has scheme', function () {
+      const actual = penrose.getScheme('public://dir/file.jpg');
+      const expected = 'public';
 
       assert.equal(actual, expected);
     });
 
-    it('Should return undefined scheme if URI has no scheme', function() {
-      var actual = penrose.getScheme('dir/file.jpg');
-      var expected = undefined;
-
-      assert.equal(actual, expected);
-    });
-  });
-
-  describe('getTarget', function() {
-    it('Should return expected target if URI has scheme', function() {
-      var actual = penrose.getTarget('public://dir/file.jpg');
-      var expected = 'dir/file.jpg';
-
-      assert.equal(actual, expected);
-    });
-
-    it('Should return expected target if URI has no scheme', function() {
-      var actual = penrose.getTarget('dir/file.jpg');
-      var expected = 'dir/file.jpg';
+    it('Should return undefined scheme if URI has no scheme', function () {
+      const actual = penrose.getScheme('dir/file.jpg');
+      const expected = undefined;
 
       assert.equal(actual, expected);
     });
   });
 
-  describe('getURL', function() {
-    it('Should return expected URL if URI has scheme', function() {
-      var actual = penrose.getURL('public://dir/file.jpg');
-      var expected = '/' + config.schemes.public.path + 'dir/file.jpg';
+  describe('getTarget', function () {
+    it('Should return expected target if URI has scheme', function () {
+      const actual = penrose.getTarget('public://dir/file.jpg');
+      const expected = 'dir/file.jpg';
 
       assert.equal(actual, expected);
     });
 
-    it('Should return expected URL if URI has no scheme', function() {
-      var actual = penrose.getURL('dir/file.jpg');
-      var expected = 'dir/file.jpg';
-
-      assert.equal(actual, expected);
-    });
-
-    it('Should return expected URL if URI has unsupported scheme', function() {
-      var actual = penrose.getURL('http://dir/file.jpg');
-      var expected = 'http://dir/file.jpg';
+    it('Should return expected target if URI has no scheme', function () {
+      const actual = penrose.getTarget('dir/file.jpg');
+      const expected = 'dir/file.jpg';
 
       assert.equal(actual, expected);
     });
   });
 
-  describe('getStylePath', function() {
-    it('Should return expected path if URI has scheme', function() {
-      var actual = penrose.getStylePath('small', 'private://dir/file.jpg');
-      var expected = 'private://styles/small/dir/file.jpg';
+  describe('getURL', function () {
+    it('Should return expected URL if URI has scheme', function () {
+      const actual = penrose.getURL('public://dir/file.jpg');
+      const expected = '/' + config.schemes.public.path + 'dir/file.jpg';
 
       assert.equal(actual, expected);
     });
 
-    it('Should return expected path if URI has no scheme', function() {
-      var actual = penrose.getStylePath('small', 'dir/file.jpg');
-      var expected = 'public://styles/small/dir/file.jpg';
+    it('Should return expected URL if URI has no scheme', function () {
+      const actual = penrose.getURL('dir/file.jpg');
+      const expected = 'dir/file.jpg';
+
+      assert.equal(actual, expected);
+    });
+
+    it('Should return expected URL if URI has unsupported scheme', function () {
+      const actual = penrose.getURL('http://dir/file.jpg');
+      const expected = 'http://dir/file.jpg';
 
       assert.equal(actual, expected);
     });
   });
 
-  describe('getStyleURL', function() {
-    it('Should return expected URL if URI has scheme', function() {
-      var actual = penrose.getStyleURL('small', 'public://dir/file.jpg');
-      var expected =
+  describe('getStylePath', function () {
+    it('Should return expected path if URI has scheme', function () {
+      const actual = penrose.getStylePath('small', 'private://dir/file.jpg');
+      const expected = 'private://styles/small/dir/file.jpg';
+
+      assert.equal(actual, expected);
+    });
+
+    it('Should return expected path if URI has no scheme', function () {
+      const actual = penrose.getStylePath('small', 'dir/file.jpg');
+      const expected = 'public://styles/small/dir/file.jpg';
+
+      assert.equal(actual, expected);
+    });
+  });
+
+  describe('getStyleURL', function () {
+    it('Should return expected URL if URI has scheme', function () {
+      const actual = penrose.getStyleURL('small', 'public://dir/file.jpg');
+      const expected =
         '/' + config.schemes.public.path + 'styles/small/dir/file.jpg';
 
       assert.equal(actual, expected);
     });
 
-    it('Should return expected URL if URI has no scheme', function() {
-      var actual = penrose.getStyleURL('small', 'dir/file.jpg');
-      var expected =
+    it('Should return expected URL if URI has no scheme', function () {
+      const actual = penrose.getStyleURL('small', 'dir/file.jpg');
+      const expected =
         '/' + config.schemes.public.path + 'styles/small/dir/file.jpg';
 
       assert.equal(actual, expected);
     });
 
-    it('Should throw error if URI has unsupported scheme', function() {
-      var actual;
-      var expected = 'error';
+    it('Should throw error if URI has unsupported scheme', function () {
+      let actual;
+      const expected = 'error';
 
       try {
         actual = penrose.getStyleURL('small', 'http://dir/file.jpg');
@@ -206,22 +208,22 @@ describe('Penrose', function() {
     });
   });
 
-  describe('createDerivative', function() {
-    it('Should create derivative images', function() {
-      var actual = function() {
+  describe('createDerivative', function () {
+    it('Should create derivative images', function () {
+      const actual = function () {
         return multiGlob(
-          _.map(config.schemes, function(scheme) {
+          _.map(config.schemes, function (scheme) {
             return scheme.path + '**/*';
           }),
           {
             nodir: true
           }
         )
-          .then(function(files) {
-            var tasks = [];
+          .then(function (files) {
+            const tasks = [];
 
-            _.forEach(files, function(file) {
-              _.forEach(config.styles, function(style, styleName) {
+            _.forEach(files, function (file) {
+              _.forEach(config.styles, function (style, styleName) {
                 tasks.push({
                   style: style,
                   src: file,
@@ -230,13 +232,13 @@ describe('Penrose', function() {
               });
             });
 
-            return Promise.mapSeries(tasks, function(task) {
+            return Promise.mapSeries(tasks, function (task) {
               return penrose.createDerivative(task.style, task.src, task.dist);
             });
           })
-          .then(function() {
+          .then(function () {
             return multiGlob(
-              _.map(config.schemes, function(scheme) {
+              _.map(config.schemes, function (scheme) {
                 return scheme.path + 'styles/**/*';
               }),
               {
@@ -246,7 +248,7 @@ describe('Penrose', function() {
           });
       };
 
-      var expected = [
+      const expected = [
         config.schemes.public.path +
           'styles/small/' +
           config.schemes.public.path +
@@ -257,26 +259,26 @@ describe('Penrose', function() {
     });
   });
 
-  describe('createMathFile', function() {
-    it('Should create math files', function() {
-      var math = [
+  describe('createMathFile', function () {
+    it('Should create math files', function () {
+      const math = [
         {
           data: 'E = mc^2',
           format: 'tex'
         }
       ];
 
-      var tasks = [];
-      var expected = [];
+      const tasks = [];
+      const expected = [];
 
-      _.forEach(math, function(value) {
-        var outputFormat = 'svg';
-        var task = {
+      _.forEach(math, function (value) {
+        const outputFormat = 'svg';
+        const task = {
           input: value.data,
           inputFormat: value.format,
           outputFormat: outputFormat
         };
-        var filename = penrose.getMathFilename(task);
+        const filename = penrose.getMathFilename(task);
         task.output = penrose.getMathPath(outputFormat, filename);
 
         tasks.push(task);
@@ -284,12 +286,12 @@ describe('Penrose', function() {
         expected.push(config.schemes.public.path + 'math/svg/' + filename);
       });
 
-      var actual = function() {
-        return Promise.mapSeries(tasks, function(task) {
+      const actual = function () {
+        return Promise.mapSeries(tasks, function (task) {
           return penrose.createMathFile(task);
-        }).then(function() {
+        }).then(function () {
           return multiGlob(
-            _.map(config.schemes, function(scheme) {
+            _.map(config.schemes, function (scheme) {
               return scheme.path + 'math/**/*';
             }),
             {
