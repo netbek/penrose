@@ -4,6 +4,6 @@
     "event-stream"
   ],
   "removeRange": true,
-  "semverLevel": "major",
+  "target": "minor",
   "upgrade": true
 }
