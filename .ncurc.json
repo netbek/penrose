@@ -1,8 +1,4 @@
 {
-  "reject": [
-    "eslint-scope",
-    "event-stream"
-  ],
   "removeRange": true,
   "target": "minor",
   "upgrade": true
