@@ -20,7 +20,7 @@
     "url": "https://github.com/netbek/penrose/issues"
   },
   "dependencies": {
-    "@babel/core": "7.16.7",
+    "@babel/core": "7.17.2",
     "babel-eslint": "10.1.0",
     "babel-loader": "8.2.3",
     "babel-plugin-lodash": "3.3.4",
@@ -29,21 +29,21 @@
     "canonical-json": "0.0.4",
     "chalk": "4.1.2",
     "cheerio": "0.22.0",
-    "eslint": "7.32.0",
-    "eslint-config-airbnb": "18.2.1",
-    "eslint-config-prettier": "6.15.0",
+    "eslint": "8.9.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "8.3.0",
     "eslint-plugin-babel": "5.3.1",
     "eslint-plugin-dollar-sign": "1.0.2",
     "eslint-plugin-html": "6.2.0",
     "eslint-plugin-import": "2.25.4",
-    "eslint-plugin-jsdoc": "30.7.13",
+    "eslint-plugin-jsdoc": "37.9.0",
     "eslint-plugin-jsx-a11y": "6.5.1",
-    "eslint-plugin-markdown": "1.0.2",
-    "eslint-plugin-prettier": "3.4.1",
+    "eslint-plugin-markdown": "2.2.1",
+    "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-react": "7.28.0",
-    "fs-extra": "9.1.0",
+    "fs-extra": "10.0.0",
     "glob": "7.2.0",
-    "glob-promise": "3.4.0",
+    "glob-promise": "4.2.2",
     "lodash": "4.17.21",
     "lodash-webpack-plugin": "0.11.6",
     "mathjax": "2.7.9",
@@ -51,13 +51,13 @@
     "phantomjs-prebuilt": "2.1.16",
     "prettier": "2.5.1",
     "replace-ext": "2.0.0",
-    "sharp": "0.29.3",
+    "sharp": "0.30.1",
     "svg2png": "4.1.1",
     "webpack": "4.46.0"
   },
   "devDependencies": {
-    "chai": "4.3.4",
+    "chai": "4.3.6",
     "chai-as-promised": "7.1.1",
-    "mocha": "8.4.0"
+    "mocha": "9.2.0"
   }
 }

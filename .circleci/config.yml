@@ -2,13 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:14.17.1-stretch-browsers
+      - image: cimg/node:16.13.2-browsers
     steps:
       - checkout
       - run:
           name: Install dependencies
           command: |
-            sudo npm install -g bower grunt-cli gulp-cli npm@7
+            sudo npm install -g bower grunt-cli gulp-cli npm@8
             sudo apt-get update -qq
             sudo apt-get install -y -qq graphicsmagick
             npm ci
