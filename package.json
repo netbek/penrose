@@ -20,7 +20,7 @@
     "url": "https://github.com/netbek/penrose/issues"
   },
   "dependencies": {
-    "@babel/core": "7.17.2",
+    "@babel/core": "7.17.7",
     "babel-eslint": "10.1.0",
     "babel-loader": "8.2.3",
     "babel-plugin-lodash": "3.3.4",
@@ -29,19 +29,19 @@
     "canonical-json": "0.0.4",
     "chalk": "4.1.2",
     "cheerio": "0.22.0",
-    "eslint": "8.9.0",
+    "eslint": "8.11.0",
     "eslint-config-airbnb": "19.0.4",
-    "eslint-config-prettier": "8.3.0",
+    "eslint-config-prettier": "8.5.0",
     "eslint-plugin-babel": "5.3.1",
     "eslint-plugin-dollar-sign": "1.0.2",
     "eslint-plugin-html": "6.2.0",
     "eslint-plugin-import": "2.25.4",
-    "eslint-plugin-jsdoc": "37.9.0",
+    "eslint-plugin-jsdoc": "37.9.7",
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-markdown": "2.2.1",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-react": "7.28.0",
-    "fs-extra": "10.0.0",
+    "eslint-plugin-react": "7.29.4",
+    "fs-extra": "10.0.1",
     "glob": "7.2.0",
     "glob-promise": "4.2.2",
     "lodash": "4.17.21",
@@ -49,15 +49,15 @@
     "mathjax": "2.7.9",
     "mathjax-node": "0.5.2",
     "phantomjs-prebuilt": "2.1.16",
-    "prettier": "2.5.1",
+    "prettier": "2.6.0",
     "replace-ext": "2.0.0",
-    "sharp": "0.30.1",
+    "sharp": "0.30.3",
     "svg2png": "4.1.1",
     "webpack": "4.46.0"
   },
   "devDependencies": {
     "chai": "4.3.6",
     "chai-as-promised": "7.1.1",
-    "mocha": "9.2.0"
+    "mocha": "9.2.2"
   }
 }
