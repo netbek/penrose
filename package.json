@@ -51,8 +51,7 @@
     "phantomjs-prebuilt": "2.1.16",
     "prettier": "2.7.1",
     "replace-ext": "2.0.0",
-    "sharp": "0.30.7",
-    "webpack": "4.46.0"
+    "sharp": "0.30.7"
   },
   "devDependencies": {
     "chai": "4.3.6",
