@@ -20,7 +20,7 @@
     "url": "https://github.com/netbek/penrose/issues"
   },
   "dependencies": {
-    "@babel/core": "7.20.12",
+    "@babel/core": "7.22.1",
     "babel-eslint": "10.1.0",
     "babel-loader": "8.3.0",
     "babel-plugin-lodash": "3.3.4",
@@ -29,18 +29,18 @@
     "canonical-json": "0.0.4",
     "chalk": "4.1.2",
     "cheerio": "0.22.0",
-    "eslint": "8.32.0",
+    "eslint": "8.41.0",
     "eslint-config-airbnb": "19.0.4",
-    "eslint-config-prettier": "8.6.0",
+    "eslint-config-prettier": "8.8.0",
     "eslint-plugin-babel": "5.3.1",
     "eslint-plugin-dollar-sign": "1.0.2",
     "eslint-plugin-html": "6.2.0",
     "eslint-plugin-import": "2.27.5",
-    "eslint-plugin-jsdoc": "39.6.9",
+    "eslint-plugin-jsdoc": "39.9.1",
     "eslint-plugin-jsx-a11y": "6.7.1",
     "eslint-plugin-markdown": "2.2.1",
     "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.32.1",
+    "eslint-plugin-react": "7.32.2",
     "fs-extra": "10.1.0",
     "glob": "7.2.3",
     "glob-promise": "4.2.2",
@@ -49,9 +49,9 @@
     "mathjax": "2.7.9",
     "mathjax-node": "0.5.2",
     "phantomjs-prebuilt": "2.1.16",
-    "prettier": "2.8.3",
+    "prettier": "2.8.8",
     "replace-ext": "2.0.0",
-    "sharp": "0.31.3"
+    "sharp": "0.32.1"
   },
   "devDependencies": {
     "chai": "4.3.7",
