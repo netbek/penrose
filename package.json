@@ -1,6 +1,10 @@
 {
   "name": "penrose",
   "version": "0.2.38",
+  "engines": {
+    "node": "18.16.0",
+    "npm": "9.6.7"
+  },
   "description": "Build derivative images",
   "main": "lib/penrose.js",
   "repository": {
