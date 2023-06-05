@@ -1,6 +1,6 @@
 {
   "name": "penrose",
-  "version": "0.2.38",
+  "version": "0.2.39",
   "engines": {
     "node": "18.16.0",
     "npm": "9.6.7"
