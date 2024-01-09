@@ -2,13 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cimg/node:18.16.0-browsers
+      - image: cimg/node:20.10.0-browsers
     steps:
       - checkout
       - run:
           name: Install dependencies
           command: |
-            sudo npm install -g bower grunt-cli gulp-cli npm@9
+            sudo npm install -g bower grunt-cli gulp-cli
             sudo apt-get update -qq
             sudo apt-get install -y -qq graphicsmagick
             npm ci
