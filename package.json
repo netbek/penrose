@@ -20,19 +20,19 @@
     "url": "https://github.com/netbek/penrose/issues"
   },
   "dependencies": {
-    "@babel/core": "7.23.9",
+    "@babel/core": "7.26.0",
     "babel-eslint": "10.1.0",
-    "babel-loader": "8.3.0",
+    "babel-loader": "8.4.1",
     "babel-plugin-lodash": "3.3.4",
     "babel-plugin-transform-class-properties": "6.24.1",
     "bluebird": "3.7.2",
     "canonical-json": "0.0.4",
     "chalk": "4.1.2",
     "cheerio": "0.22.0",
-    "eslint": "8.56.0",
+    "eslint": "8.57.1",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-prettier": "5.1.3",
-    "espree": "10.0.0",
+    "eslint-plugin-prettier": "5.2.1",
+    "espree": "10.3.0",
     "fs-extra": "11.2.0",
     "glob": "7.2.3",
     "glob-promise": "4.2.2",
@@ -41,13 +41,13 @@
     "mathjax": "2.7.9",
     "mathjax-node": "0.5.2",
     "phantomjs-prebuilt": "2.1.16",
-    "prettier": "3.2.4",
+    "prettier": "3.3.3",
     "replace-ext": "2.0.0",
-    "sharp": "0.33.2"
+    "sharp": "0.33.5"
   },
   "devDependencies": {
-    "chai": "4.4.1",
-    "chai-as-promised": "7.1.1",
+    "chai": "4.5.0",
+    "chai-as-promised": "7.1.2",
     "mocha": "9.2.2"
   }
 }
