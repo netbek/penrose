@@ -3,11 +3,14 @@ module.exports = {
   env: {
     browser: true,
     jquery: true,
-    mocha: true,
     node: true
   },
   plugins: ['prettier'],
-  extends: ['eslint:recommended', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier'
+  ],
   rules: {
     'no-undef': 'error',
     'no-unsafe-finally': 'error',
@@ -15,9 +18,9 @@ module.exports = {
     'no-unsafe-optional-chaining': 'error',
     'no-var': 'error'
   },
-  parser: 'espree',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2015,
+    ecmaVersion: 2017,
     requireConfigFile: true,
     sourceType: 'module'
   }

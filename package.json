@@ -8,6 +8,7 @@
     "url": "git://github.com/netbek/penrose"
   },
   "scripts": {
+    "format-js": "prettier --parser babel --write \"lib/**/*.js\"",
     "test": "vitest run"
   },
   "author": {
@@ -29,10 +30,6 @@
     "canonical-json": "0.0.4",
     "chalk": "4.1.2",
     "cheerio": "0.22.0",
-    "eslint": "8.57.1",
-    "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-prettier": "5.2.1",
-    "espree": "10.3.0",
     "fs-extra": "11.2.0",
     "glob": "7.2.3",
     "glob-promise": "4.2.2",
@@ -46,6 +43,12 @@
     "sharp": "0.33.5"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "eslint": "8.57.1",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-prettier": "5.2.1",
+    "typescript": "5.6.3",
     "vitest": "2.1.5"
   }
 }

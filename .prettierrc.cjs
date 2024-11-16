@@ -1,13 +1,13 @@
 module.exports = {
-  printWidth: 80,
-  tabWidth: 2,
-  useTabs: false,
-  semi: true,
-  singleQuote: true,
-  trailingComma: 'none',
-  bracketSpacing: false,
-  bracketSameLine: false,
   arrowParens: 'always',
+  bracketSameLine: false,
+  bracketSpacing: false,
   endOfLine: 'lf',
-  parser: 'espree'
+  printWidth: 80,
+  semi: true,
+  singleAttributePerLine: false,
+  singleQuote: true,
+  tabWidth: 2,
+  trailingComma: 'none',
+  useTabs: false
 };
