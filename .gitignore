@@ -8,5 +8,5 @@ nbproject
 .vscode
 
 # Test output
-test/data/dist/
-test/data/files/math/
+lib/__tests__/data/files/math
+lib/__tests__/data/files/styles
