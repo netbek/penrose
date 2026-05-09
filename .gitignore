@@ -10,3 +10,8 @@ nbproject
 # Test output
 lib/__tests__/data/files/math
 lib/__tests__/data/files/styles
+
+# Dev environment
+.devenv*
+.direnv
+devenv.local.nix

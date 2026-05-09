@@ -1,0 +1,15 @@
+default_language_version:
+  node: 22.22.1
+
+default_stages: [pre-commit]
+
+fail_fast: true
+
+repos:
+  - repo: local
+    hooks:
+      - id: nixfmt
+        name: nixfmt
+        entry: nixfmt
+        language: system
+        files: \.nix$
