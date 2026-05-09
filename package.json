@@ -8,7 +8,6 @@
     "url": "git://github.com/netbek/penrose"
   },
   "scripts": {
-    "format-js": "prettier --parser babel --write \"lib/**/*.js\"",
     "test": "vitest run"
   },
   "author": {

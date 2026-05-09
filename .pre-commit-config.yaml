@@ -1,0 +1,22 @@
+default_language_version:
+  node: 24.15.0
+
+default_stages: [pre-commit]
+
+fail_fast: true
+
+repos:
+  - repo: local
+    hooks:
+      - id: nixfmt
+        name: nixfmt
+        entry: nixfmt
+        language: system
+        files: \.nix$
+
+      - id: format-js
+        name: Format JS
+        language: system
+        entry: npx prettier --parser babel --write
+        files: ^(lib)/.*\.(js|jsx|cjs|mjs)$
+        pass_filenames: true
