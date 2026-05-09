@@ -31,7 +31,7 @@
     "cheerio": "1.2.0",
     "fast-json-stable-stringify": "2.1.0",
     "fs-extra": "11.3.5",
-    "glob-promise": "4.2.2",
+    "glob-promise": "6.0.7",
     "lodash": "4.18.1",
     "lodash-webpack-plugin": "0.11.6",
     "mathjax": "2.7.9",
