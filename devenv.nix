@@ -12,6 +12,7 @@
     graphicsmagick
     nixfmt
     pre-commit
+    ripgrep
   ];
 
   languages = {
