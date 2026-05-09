@@ -1,5 +1,5 @@
 default_language_version:
-  node: 22.22.1
+  node: 24.15.0
 
 default_stages: [pre-commit]
 
