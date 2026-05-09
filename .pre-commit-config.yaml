@@ -14,9 +14,11 @@ repos:
         language: system
         files: \.nix$
 
-      - id: format-js
-        name: Format JS
-        language: system
-        entry: npx prettier --parser babel --write
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.1.0
+    hooks:
+      - id: prettier
+        alias: prettier-js
+        name: prettier (js)
+        args: [--parser, babel, --write]
         files: ^(lib)/.*\.(js|jsx|cjs|mjs)$
-        pass_filenames: true
