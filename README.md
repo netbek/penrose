@@ -1,4 +1,4 @@
-# Penrose [![CircleCI](https://circleci.com/gh/netbek/penrose.svg?style=svg)](https://circleci.com/gh/netbek/penrose)
+# Penrose
 
 Build derivative images.
 
