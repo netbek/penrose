@@ -13,3 +13,10 @@ repos:
         entry: nixfmt
         language: system
         files: \.nix$
+
+      - id: format-js
+        name: Format JS
+        language: system
+        entry: npx prettier --parser babel --write
+        files: ^(lib)/.*\.(js|jsx|cjs|mjs)$
+        pass_filenames: true
