@@ -20,16 +20,11 @@
     "url": "https://github.com/netbek/penrose/issues"
   },
   "dependencies": {
-    "@babel/core": "7.29.0",
-    "babel-eslint": "10.1.0",
-    "babel-loader": "8.4.1",
     "bluebird": "3.7.2",
     "chalk": "4.1.2",
     "fs-extra": "11.3.5",
     "glob-promise": "6.0.7",
     "lodash": "4.18.1",
-    "lodash-webpack-plugin": "0.11.6",
-    "phantomjs-prebuilt": "2.1.16",
     "prettier": "3.8.3",
     "replace-ext": "2.0.0",
     "sharp": "0.34.5"
