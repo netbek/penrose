@@ -5,7 +5,7 @@
   "main": "lib/penrose.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/netbek/penrose"
+    "url": "git://github.com/netbek/penrose.git"
   },
   "scripts": {
     "test": "vitest run"
