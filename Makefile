@@ -25,10 +25,10 @@ bump-version:
 		echo "Must be one of: $(CYAN)$$VALID_BUMP$(RESET)"; \
 		exit 1; \
 	fi; \
-	npm version $$BUMP;
+	pnpm version $$BUMP;
 
 create-release:
-	@VERSION=$$(npm pkg get version --browser=false | tr -d '"'); \
+	@VERSION=$$(pnpm pkg get version --browser=false | tr -d '"'); \
 	gh release create $$VERSION;
 
 # Prevent make from treating arguments to bump-version as targets
