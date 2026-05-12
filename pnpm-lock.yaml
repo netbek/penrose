@@ -17,9 +17,6 @@ importers:
       fs-extra:
         specifier: 11.3.5
         version: 11.3.5
-      glob-promise:
-        specifier: 6.0.7
-        version: 6.0.7(glob@13.0.6)
       lodash:
         specifier: 4.18.1
         version: 4.18.1
@@ -48,6 +45,9 @@ importers:
       eslint-plugin-prettier:
         specifier: 5.5.5
         version: 5.5.5(eslint-config-prettier@9.1.2(eslint@8.57.1))(eslint@8.57.1)(prettier@3.8.3)
+      glob:
+        specifier: 13.0.6
+        version: 13.0.6
       npm-check-updates:
         specifier: 22.1.1
         version: 22.1.1
@@ -868,12 +868,6 @@ packages:
   glob-parent@6.0.2:
     resolution: {integrity: sha512-XxwI8EOhVQgWp6iDL+3b0r86f4d6AX6zSU55HfB4ydCEuXLXc5FcYeOu+nnGftS4TEju/11rt4KJPTMgbfmv4A==}
     engines: {node: '>=10.13.0'}
-
-  glob-promise@6.0.7:
-    resolution: {integrity: sha512-DEAe6br1w8ZF+y6KM2pzgdfhpreladtNvyNNVgSkxxkFWzXTJFXxQrJQQbAnc7kL0EUd7w5cR8u4K0P4+/q+Gw==}
-    engines: {node: '>=16'}
-    peerDependencies:
-      glob: ^8.0.3
 
   glob@13.0.6:
     resolution: {integrity: sha512-Wjlyrolmm8uDpm/ogGyXZXb1Z+Ca2B8NbJwqBVg0axK9GbBeoS7yGV6vjXnYdGm6X53iehEuxxbyiKp8QmN4Vw==}
@@ -2010,10 +2004,6 @@ snapshots:
   glob-parent@6.0.2:
     dependencies:
       is-glob: 4.0.3
-
-  glob-promise@6.0.7(glob@13.0.6):
-    dependencies:
-      glob: 13.0.6
 
   glob@13.0.6:
     dependencies:
