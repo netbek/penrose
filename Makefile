@@ -30,7 +30,7 @@ bump-version:
 create-release:
 	@VERSION=$$(pnpm pkg get version --browser=false | tr -d '"'); \
 	gh release create $$VERSION; \
-	git fetch --tags
+	git fetch --tags;
 
 # Prevent make from treating arguments to bump-version as targets
 ifeq (bump-version,$(firstword $(MAKECMDGOALS)))
