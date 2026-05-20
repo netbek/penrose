@@ -5,3 +5,5 @@ allowBuilds:
 blockExoticSubdeps: true
 
 minimumReleaseAge: 4320
+
+trustPolicy: no-downgrade
