@@ -1,9 +1,12 @@
 allowBuilds:
-  "esbuild@0.27.7": true
-  "sharp@0.34.5": true
+  "esbuild@0.28.1": true
+  "sharp@0.35.3": true
 
 blockExoticSubdeps: true
 
-minimumReleaseAge: 4320
+minimumReleaseAge: 10080
 
 trustPolicy: no-downgrade
+
+trustPolicyExclude:
+  - eslint-config-prettier@9.1.2
