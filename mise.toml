@@ -1,0 +1,28 @@
+[tools]
+node = "24"
+pnpm = "latest"
+pre-commit = "latest"
+ripgrep = "latest"
+trivy = "latest"
+
+[settings]
+lockfile = true
+minimum_release_age = "7d"
+npm.package_manager = "pnpm"
+
+[env]
+_.path = ["{{config_root}}/node_modules/.bin"]
+
+[hooks.enter]
+run = """
+mise install --quiet
+mise run pnpm-install
+if [ -d .git ]; then pre-commit install --overwrite > /dev/null 2>&1; fi
+"""
+
+[tasks.pnpm-install]
+description = "Installs dependencies with pnpm"
+quiet = true
+run = "pnpm install --loglevel error"
+sources = ["package.json", "pnpm-lock.yaml", "mise.toml"]
+outputs = ["node_modules/.pnpm/lock.yaml"]
