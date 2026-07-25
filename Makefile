@@ -91,7 +91,7 @@ bump-version:
 	pnpm version $$BUMP;
 
 create-release:
-	@VERSION=$$(pnpm pkg get version --browser=false | tr -d '"'); \
+	@VERSION=$$(pnpm pkg get version | tr -d '"'); \
 	gh release create $$VERSION; \
 	git fetch --tags;
 
