@@ -26,7 +26,7 @@
     "lodash": "4.18.1",
     "prettier": "3.8.3",
     "replace-ext": "2.0.0",
-    "sharp": "0.34.5"
+    "sharp": "0.35.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "8.59.2",
