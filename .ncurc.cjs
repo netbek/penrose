@@ -1,5 +1,5 @@
 module.exports = {
-  cooldown: '3d',
+  cooldown: '7d',
   removeRange: true,
   target: 'minor',
   upgrade: true
